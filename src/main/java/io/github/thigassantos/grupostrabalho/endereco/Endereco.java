@@ -1,29 +1,53 @@
 package io.github.thigassantos.grupostrabalho.endereco;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 /**
  *
- * @author Tygsv
+ * @author tygsv
  */
 @Entity
-public class Endereco {
-
+public class Endereco implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated
     private TipoLogradouro tipoLogradouro;
-    @Column(nullable = false, length = 150)
+    @Column(length = 150)
     private String logradouro;
     private Integer numero;
-    @Column(nullable = false, length = 26)
+    @Column(length = 25)
     private String bairro;
+    public Endereco(){   
+    }
+    
+    public Endereco(TipoLogradouro tipoLogradouro, String logradouro,
+            Integer numero, String bairro){
+        
+        this.tipoLogradouro = tipoLogradouro;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+    }
     
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
-        public TipoLogradouro getTipoLogradouro() {
+     public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public TipoLogradouro getTipoLogradouro() {
         return tipoLogradouro;
     }
 
@@ -53,16 +77,7 @@ public class Endereco {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
-    }  
+    }
+//</editor-fold>
     
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    //</editor-fold>
-
 }

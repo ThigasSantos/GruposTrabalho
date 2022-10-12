@@ -1,26 +1,54 @@
 package io.github.thigassantos.grupostrabalho.grupos;
 
 import io.github.thigassantos.grupostrabalho.pessoa.Pessoa;
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
- * @author Tygsv
+ * @author tygsv
  */
 @Entity
-public class Atuacao {
+public class Atuacao implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate inicio;
     private LocalDate termino;
-    @OneToOne
-    private Grupo grupo;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "grupo_id")
+    private Grupo grupo;
+
+    public Atuacao() {
+    }
+
+    public Atuacao(LocalDate inicio, LocalDate termino, Pessoa pessoa, Grupo grupo) {
+        this.inicio = inicio;
+        this.termino = termino;
+        this.pessoa = pessoa;
+        this.grupo = grupo;
+    }
+
+    public Atuacao(LocalDate inicio, Pessoa pessoa, Grupo grupo) {
+        this.inicio = inicio;
+        this.pessoa = pessoa;
+        this.grupo = grupo;
+    }
+
+    
     
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Long getId() {
@@ -54,7 +82,7 @@ public class Atuacao {
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }
-    
+
     public Pessoa getPessoa() {
         return pessoa;
     }
@@ -62,7 +90,6 @@ public class Atuacao {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
-    //</editor-fold>
+//</editor-fold>
 
 }
