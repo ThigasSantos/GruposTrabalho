@@ -3,6 +3,7 @@ package io.github.thigassantos.grupostrabalho.grupos;
 import io.github.thigassantos.grupostrabalho.pessoa.Pessoa;
 import java.io.Serializable;
 import java.util.List;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +34,7 @@ public class Grupo implements Serializable {
     @OneToMany(mappedBy = "grupo",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Atuacao> atuacoes;
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonbTransient
     @JoinColumn(name = "lider_id")
     private Pessoa lider;
 

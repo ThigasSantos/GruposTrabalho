@@ -3,6 +3,7 @@ package io.github.thigassantos.grupostrabalho.grupos;
 import io.github.thigassantos.grupostrabalho.pessoa.Pessoa;
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +27,11 @@ public class Atuacao implements Serializable {
     private LocalDate inicio;
     private LocalDate termino;
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonbTransient
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonbTransient
     @JoinColumn(name = "grupo_id")
     private Grupo grupo;
 

@@ -2,6 +2,7 @@ package io.github.thigassantos.grupostrabalho.telefone;
 
 import io.github.thigassantos.grupostrabalho.pessoa.Pessoa;
 import java.io.Serializable;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,6 +27,7 @@ public class Telefone implements Serializable {
     private Byte ddd;
     private Integer numero;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonbTransient
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
     

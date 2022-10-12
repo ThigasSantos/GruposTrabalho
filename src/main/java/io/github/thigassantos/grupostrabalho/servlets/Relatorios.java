@@ -4,8 +4,13 @@
  */
 package io.github.thigassantos.grupostrabalho.servlets;
 
+import io.github.thigassantos.grupostrabalho.pessoa.Pessoa;
+import io.github.thigassantos.grupostrabalho.pessoa.PessoaBeanLocal;
+import io.github.thigassantos.grupostrabalho.util.Util;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Relatorios", urlPatterns = {"/Relatorios"})
 public class Relatorios extends HttpServlet {
 
+    @Inject
+    PessoaBeanLocal pessoaBean;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,6 +48,8 @@ public class Relatorios extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Relatorios at " + request.getContextPath() + "</h1>");
+            List<Pessoa> lista = pessoaBean.buscarTodosTyped();
+            lista.forEach(p->{out.println("<p><pre>"+Util.toJson(p)+"</pre></p>");});
             out.println("</body>");
             out.println("</html>");
         }
