@@ -26,11 +26,11 @@ public class Atuacao implements Serializable {
     private Long id;
     private LocalDate inicio;
     private LocalDate termino;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonbTransient
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonbTransient
     @JoinColumn(name = "grupo_id")
     private Grupo grupo;
@@ -38,16 +38,14 @@ public class Atuacao implements Serializable {
     public Atuacao() {
     }
 
-    public Atuacao(LocalDate inicio, LocalDate termino, Pessoa pessoa, Grupo grupo) {
+    public Atuacao(LocalDate inicio, LocalDate termino, Grupo grupo) {
         this.inicio = inicio;
         this.termino = termino;
-        this.pessoa = pessoa;
         this.grupo = grupo;
     }
 
-    public Atuacao(LocalDate inicio, Pessoa pessoa, Grupo grupo) {
+    public Atuacao(LocalDate inicio, Grupo grupo) {
         this.inicio = inicio;
-        this.pessoa = pessoa;
         this.grupo = grupo;
     }
 

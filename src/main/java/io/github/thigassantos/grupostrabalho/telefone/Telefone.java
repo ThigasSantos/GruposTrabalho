@@ -1,16 +1,10 @@
 package io.github.thigassantos.grupostrabalho.telefone;
 
-import io.github.thigassantos.grupostrabalho.pessoa.Pessoa;
 import java.io.Serializable;
-import javax.json.bind.annotation.JsonbTransient;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,10 +20,6 @@ public class Telefone implements Serializable {
     private Long id;
     private Byte ddd;
     private Integer numero;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JsonbTransient
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
     
     public Telefone(){
         
@@ -64,19 +54,13 @@ public class Telefone implements Serializable {
 
     public void setNumero(Integer numero) {
         this.numero = numero;
-    }
-    
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-    
-    
-    
+    }  
     
 //</editor-fold>
     
+    @Override
+    public String toString() {
+        return "(" + ddd +
+                ") " + numero;
+    }
 }

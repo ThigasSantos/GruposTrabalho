@@ -55,14 +55,14 @@ public class CargaDados implements CargaDadosLocal {
                 new Atuacao(
                         LocalDate.of(2011, 1, 1),
                         LocalDate.of(2021, 11, 11),
-                        ana,
                         estudo1),
                 new Atuacao(
                         LocalDate.of(2012, 1, 1),
                         LocalDate.of(2022, 11, 11),
-                        ana,
                         estudo1)
         ));
+        
+        ana.setLideranca(List.of(estudo1));
 
         // Beatriz Yana
 
@@ -90,19 +90,18 @@ public class CargaDados implements CargaDadosLocal {
                 new Atuacao(
                         LocalDate.of(2012, 1, 2),
                         LocalDate.of(2021, 1, 12),
-                        beatriz,
                         estudo1),
                 new Atuacao(
                         LocalDate.of(2012, 1, 2),
-                        beatriz,
                         estudo2),
                 new Atuacao(
                         LocalDate.of(2012, 1, 4),
                         LocalDate.of(2012, 1, 14),
-                        beatriz,
                         estudo4)
         ));
 
+        beatriz.setLideranca(List.of(estudo1,estudo2,estudo4));
+        
         // Cecília Xerxes
         Pessoa cecilia = new Pessoa(
                 "Cecília Xerxes",
@@ -123,20 +122,19 @@ public class CargaDados implements CargaDadosLocal {
                 new Atuacao(
                         LocalDate.of(2013, 1, 3),
                         LocalDate.of(2021, 1, 13),
-                        cecilia,
                         estudo1),
                 new Atuacao(
                         LocalDate.of(2012, 1, 3),
                         LocalDate.of(2023, 1, 13),
-                        cecilia,
                         estudo3),
                 new Atuacao(
                         LocalDate.of(2012, 1, 4),
                         LocalDate.of(2012, 1, 14),
-                        cecilia,
                         estudo4)
         ));
 
+        cecilia.setLideranca(List.of(estudo1,estudo3));
+        
         // Débora Wendel
 
         Pessoa debora = new Pessoa(
@@ -162,24 +160,22 @@ public class CargaDados implements CargaDadosLocal {
                 new Atuacao(
                         LocalDate.of(2014, 1, 4),
                         LocalDate.of(2021, 1, 14),
-                        debora,
                         estudo1),
                 new Atuacao(
                         LocalDate.of(2012, 1, 2),
-                        debora,
                         estudo2),
                 new Atuacao(
                         LocalDate.of(2012, 1, 3),
                         LocalDate.of(2023, 1, 13),
-                        debora,
                         estudo3),
                 new Atuacao(
                         LocalDate.of(2012, 1, 4),
                         LocalDate.of(2012, 1, 14),
-                        debora,
                         estudo4)
         ));
 
+   debora.setLideranca(List.of(estudo1,estudo2,estudo3,estudo4));
+        
         pessoaBean.salvar(ana);
         pessoaBean.salvar(beatriz);
         pessoaBean.salvar(cecilia);
